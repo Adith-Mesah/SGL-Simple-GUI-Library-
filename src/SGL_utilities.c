@@ -1,4 +1,5 @@
 #include "../include/SGL_utilities.h"
+#include "../include/SGL_label.h"
 
 
 inline void SGL_SetRenderDrawColor(SDL_Renderer *renderer, SDL_Color *color) {
@@ -44,4 +45,30 @@ inline void dragRectProcess(SDL_Rect *rect,SGL_DragProp *dp,SGL_Bool mouse_press
         rect->y = y - dp->yoffset;
     }
 
+}
+
+
+void SGL_Init() {
+    if(SDL_Init(SDL_INIT_EVERYTHING)<0) {
+        SDL_Log("failed to initialize SDL2: %s",SDL_GetError());
+        exit(EXIT_FAILURE);
+    }  
+
+    if(TTF_Init()<0) {
+        SDL_Log("failed to initialize TTF: %s",TTF_GetError());
+        exit(EXIT_FAILURE);
+    }
+
+    default_font = TTF_OpenFont("res/hack.ttf",LABEL_FONT_SIZE);   
+    if(default_font == NULL) {
+        SDL_Log("failed to create font: %s",TTF_GetError());
+        exit(EXIT_FAILURE);
+    }
+}
+
+void SGL_Quit() {
+
+    TTF_CloseFont(default_font);
+    TTF_Quit();
+    SDL_Quit();
 }

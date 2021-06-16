@@ -8,7 +8,7 @@ SGL_EvEngine SGL_CreateEvEngine() {
     return evEngine;
 }
 
-void SGL_EvEngineRefresh(SGL_EvEngine *evEngine) {
+inline void SGL_EvEngineRefresh(SGL_EvEngine *evEngine) {
     while(SDL_PollEvent(&evEngine->event)>0) {
         switch(evEngine->event.type) {
             case SDL_QUIT:

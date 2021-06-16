@@ -20,9 +20,15 @@ typedef struct SGL_DragProp {
     SGL_Bool mouse_dragging;
 }SGL_DragProp;
 
+
+void SGL_Init();
+void SGL_Quit();
+
 void SGL_SetRenderDrawColor(SDL_Renderer *renderer, SDL_Color *color);
 float PercentToValue(unsigned int total,unsigned int percent);
 void dragRectProcess(SDL_Rect *rect,SGL_DragProp *dp,SGL_Bool mouse_pressed,int x,int y);
 SGL_Bool point_inside(SDL_Rect *rect,int x,int y);
+
+
 
 #endif // SGL_utilities.h

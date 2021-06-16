@@ -1,5 +1,5 @@
 name = main
-objs = main.o src/SGL_utilities.o src/SGL_panel.o src/SGL_event_engine.o
+objs = main.o src/SGL_utilities.o src/SGL_panel.o src/SGL_event_engine.o src/SGL_label.o src/SGL_object_manager.o
 compiler = gcc
 
 $(name): $(objs)

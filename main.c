@@ -1,4 +1,5 @@
 #include "include/SGL.h"
+#include <SDL2/SDL_ttf.h>
 
 
 #define WINDOW_TITLE "SGL Development Window Test"
@@ -6,7 +7,7 @@
 #define WINDOW_HEIGHT 700
 
 void init();
-void update();
+void update(); 
 void destroy();
 
 
@@ -31,14 +32,10 @@ int main(int argc, const char **argv) {
 }
 
 void init() {
-    if(SDL_Init(SDL_INIT_EVERYTHING)<0) {
-        SDL_Log("failed to initialize SDL2: %s",SDL_GetError());
-        exit(EXIT_FAILURE);
-    }
-    
+    SGL_Init();
     window = SDL_CreateWindow(
         WINDOW_TITLE,SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,
-        WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN
+        WINDOW_WIDTH,WINDOW_HEIGHT,SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE
     );
     
     if(window == NULL) {
@@ -54,6 +51,8 @@ void init() {
         SDL_Log("failed to create renderer: %s",SDL_GetError());
         exit(EXIT_FAILURE);
     }
+
+    
     
     evEngine = SGL_CreateEvEngine();
 }
@@ -80,5 +79,5 @@ void update() {
 void destroy() {
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
-    SDL_Quit();
+    SGL_Quit();
 }

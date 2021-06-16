@@ -1,6 +1,8 @@
 #include "../include/SGL_panel.h"
 
 
+
+
 SGL_Panel SGL_CreatePanel(const char *title,float x, float y,
                           float width,float height,
                           SDL_Renderer *renderer,
@@ -26,7 +28,7 @@ SGL_Panel SGL_CreatePanel(const char *title,float x, float y,
 }
 
 
-void __SGL_PanelRealignRect(SGL_Panel *panel) {
+inline void __SGL_PanelRealignRect(SGL_Panel *panel) {
     
     panel->container_rect.x = panel->title_rect.x;
     panel->container_rect.y = panel->title_rect.y;
@@ -45,12 +47,12 @@ void __SGL_PanelRealignRect(SGL_Panel *panel) {
     panel->border_rect.h = panel->container_rect.h+panel->border_size*2;
 }
 
-void SGL_PanelSetBorderSize(SGL_Panel *panel, unsigned int border_size) {
+inline void SGL_PanelSetBorderSize(SGL_Panel *panel, unsigned int border_size) {
    panel->border_size = border_size;
    __SGL_PanelRealignRect(panel);
 }
 
-void SGL_PanelShow(SGL_Panel *panel) {
+inline void SGL_PanelShow(SGL_Panel *panel) {
     
     dragRectProcess(&panel->title_rect,&panel->dp,
                     (panel->evEngine->event.button.button==SDL_BUTTON_LEFT)?true:false,
